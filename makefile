@@ -33,7 +33,7 @@ clean:
 config:
 	git config -l
 
-test: RunCollatz.out TestCollatz.out
+test: clean RunCollatz.out TestCollatz.out
 
 collatz-tests:
 	git clone https://github.com/cs373-summer-2015/collatz-tests.git
