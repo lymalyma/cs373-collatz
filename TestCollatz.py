@@ -37,6 +37,25 @@ class TestCollatz (TestCase) :
         self.assertEqual(i, 100)
         self.assertEqual(j, 200)
 
+    def test_read_empty(self):
+        s = ""
+        self.assertRaises(IndexError, collatz_read, s)
+
+    def test_read_negative_integers(self):
+        s = "-1 -2"
+        i, j = collatz_read(s)
+        self.assertEqual(i, -1)
+        self.assertEqual(j, -2)
+
+    def test_read_two_integers(self):
+        s = " 1 2 3 4 "
+        i, j = collatz_read(s)
+        self.assertEqual(i, 1)
+        self.assertEqual(j, 2)
+
+    def test_read_one_integer(self):
+        s = "1"
+        self.assertRaises(IndexError, collatz_read, s)
     # ----
     # eval
     # ----
