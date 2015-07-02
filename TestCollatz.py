@@ -103,7 +103,7 @@ class TestCollatz (TestCase) :
     def test_print (self) :
         w = StringIO()
         collatz_print(w, 1, 10, 20)
-        self.assertEqual(w.getvalue(), "1 10 20\n")
+        self.assertEqual(w.getvalue(), "1 10 20\n")   
 
     # -----
     # solve
@@ -114,6 +114,18 @@ class TestCollatz (TestCase) :
         w = StringIO()
         collatz_solve(r, w)
         self.assertEqual(w.getvalue(), "1 10 20\n100 200 125\n201 210 89\n900 1000 174\n")
+
+    def test_solve_empty(self):
+        r = StringIO()
+        w = StringIO()
+        collatz_solve(r, w)
+        self.assertEqual(w.getvalue(), "")
+
+    def test_solve_null(self):
+        r = None
+        w = None 
+        self.assertRaises(TypeError, collatz_solve, r, w)
+
 
 # ----
 # main
