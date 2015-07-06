@@ -10,6 +10,8 @@
 # collatz_read
 # ------------
 
+import sys
+
 def collatz_read (s) :
     """
     read two ints
@@ -29,9 +31,42 @@ def collatz_eval (i, j) :
     j the end       of the range, inclusive
     return the max cycle length of the range [i, j]
     """
-    # <your code>
-    return 1
 
+    assert i > 0 and j > 0
+
+    if i > j:
+        i, j = j, i 
+
+    max_cycle_length = 0
+    for n in range(i, j + 1):
+        cycle = collatz_cycle(n)
+        if cycle > max_cycle_length:
+            max_cycle_length = cycle
+
+    return max_cycle_length
+
+def collatz_cycle(n): 
+    """
+    n is a integer
+    returns cycke length in 3n+1 
+    """
+
+    cycle = 1
+
+    while n != 1:
+
+        if n % 2 == 0:
+            n = n // 2
+        else:
+            n = 3*n + 1
+        
+        cycle += 1
+
+    return cycle        
+  
+
+
+    
 # -------------
 # collatz_print
 # -------------
@@ -60,7 +95,7 @@ def collatz_solve (r, w) :
         v    = collatz_eval(i, j)
         collatz_print(w, i, j, v)
 
-#!/usr/bin/env python3
+
 
 # ------------------------------
 # projects/collatz/RunCollatz.py
@@ -72,9 +107,6 @@ def collatz_solve (r, w) :
 # imports
 # -------
 
-import sys
-
-from Collatz import collatz_solve
 
 # ----
 # main
@@ -97,4 +129,5 @@ if __name__ == "__main__" :
 900 1000 1
 % pydoc3 -w Collatz
 # That creates the file Collatz.html
-"""        
+"""
+
