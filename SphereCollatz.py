@@ -38,31 +38,35 @@ def collatz_eval (i, j) :
         i, j = j, i 
 
     max_cycle_length = 0
-    for n in range(i, j + 1):
+    for n in range(i, j+1):
         cycle = collatz_cycle(n)
         if cycle > max_cycle_length:
             max_cycle_length = cycle
 
     return max_cycle_length
 
+
+cache = {1: 1}
+
 def collatz_cycle(n): 
     """
     n is a integer
     returns cycke length in 3n+1 
     """
+    original_n = n
+    cycle = 0
 
-    cycle = 1
-
-    while n != 1:
-
+    while n not in cache and n != 1:
         if n % 2 == 0:
             n = n // 2
         else:
             n = 3*n + 1
-        
+
         cycle += 1
 
-    return cycle        
+    cache[original_n] = cycle + cache[n]
+
+    return cache[original_n]        
   
 
 
