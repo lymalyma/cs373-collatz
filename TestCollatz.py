@@ -77,7 +77,14 @@ class TestCollatz (TestCase) :
         self.assertEqual(v, 174)
 
     def test_eval_reverse_range(self):
-        self.assertRaises(AssertionError, collatz_eval, 10, 1)  
+        v = collatz_eval(10, 1)
+        self.assertEqual(v, 20) 
+        v = collatz_eval(200, 100)
+        self.assertEqual(v, 125)
+        v = collatz_eval(210, 201)
+        self.assertEqual(v, 89)
+        v = collatz_eval(1000, 900)
+        self.assertEqual(v, 174) 
 
     def test_eval_negative_integer(self):
         self.assertRaises(AssertionError, collatz_eval, -1, -2)
